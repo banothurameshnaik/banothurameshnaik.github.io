@@ -1,0 +1,17 @@
+.myworksnav {
+  white-space: pre !important;
+}
+
+.publishTxt {
+  text-align: right;
+  color: blue;
+}
+
+.pagesTitle {
+  padding-top: 30px;
+}
+
+.pageItems {
+  text-align: left;
+  list-style-type: circle;
+}
