@@ -6,11 +6,12 @@
     <!--====== Required meta tags ======-->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Ramesh Naik Banothu Personal Portfolio Website">
+    <meta name="description" content="Steps for opening AWS EC2 instance files or code into Visual Studio Code">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--====== Title ======-->
-    <title>Ramesh Naik Banothu - Personal Portfolio & CV</title>
+    <title>Steps for opening AWS EC2 instance files or code into Visual Studio Code || Ramesh Naik Banothu - Personal
+        Portfolio & Blogs</title>
 
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/png">
@@ -32,6 +33,10 @@
     <!--====== Style css ======-->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/myStyle.css">
+
+    <!--====== Code Pretter prism ======-->
+    <link rel="stylesheet" href="../assets/css/prism.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css" /> -->
 
 </head>
 
@@ -83,7 +88,8 @@
                                     <li class="nav-item"><a class="page-scroll" href="/#about">About</a></li>
                                     <!-- <li class="nav-item"><a class="page-scroll" href="/#service">Services</a></li> -->
                                     <li class="nav-item"><a class="page-scroll" href="/#skills">Skills</a></li>
-                                    <li class="nav-item"><a class="page-scroll myworksnav" href="/#work">My Works</a></li>
+                                    <li class="nav-item"><a class="page-scroll myworksnav" href="/#work">My Works</a>
+                                    </li>
                                     <li class="nav-item active"><a class="page-scroll" href="/blogs">Blogs</a></li>
                                     <li class="nav-item"><a class="page-scroll" href="/#contact">Contact</a></li>
                                 </ul>
@@ -99,46 +105,58 @@
 
     <!--====== ABOUT PART START ======-->
 
-    <section id="blogs" class="blogs-area gray-bg pt-125 pb-130">
+    <section id="blogs" class="blogs-area pt-125 pb-130">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="section-title text-center pb-30">
-                        <h2 class="title pagesTitle">Blogs</h2>
-                        <p>Following blogs I have written</p>
+                    <div class="section-title text-center">
+                        <h2 class="title pagesTitle">AWS EC2 instance files or code into Visual Studio Code</h2>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
-            <div class="row justify-content-center">
-                <!-- Blog: 1 -->
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-service text-center mt-30">
-                        <div class="service-icon">
-                            <i class="lni lni-code-alt"></i>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="post-outer">
+                        <div class="post">
+                            <div class="post-body entry-content float-container" id="post-body-1136754466247242068">
+                                <p>We can connect / open AWS EC2 instance files / code using Visual Studio.</p>
+                                <p>Here are the steps need to follow for this.</p>
+                                <p></p>
+                                <br />
+                                    <p>Get your private key (.pem file) for your EC2 instance</p>
+                                    <p>Make sure you set read-only permission to your private key</p>
+                                    <pre><code class="language-bash">chmod 400 my-key-pair.pem</code></pre>
+                                    <p>Copy file into ssh path</p>
+                                    <pre><code class="language-bash">cp my-key-pair.pem ~/.ssh/my-key-pair.pem</code></pre>
+                                    <p>
+                                        Add following into <b><i>~/.ssh/config</i></b> file
+                                        <pre><code class="language-bash">Host #NameOfYourServer_Here
+    HostName #IPAddreess_Here
+    User ubuntu
+    IdentityFile ~/.ssh/my-key-pair.pem</code></pre>
+                                        Example
+                                        <pre><code class="language-bash">Host RameshEC2Machine
+    HostName 62.121.132.93
+    User ubuntu
+    IdentityFile ~/.ssh/my-key-pair.pem</code></pre>
+                                    </p>
+                                    <p>Install the extensions required in VS Code</p>
+                                    <p>Extension name is Remote Development and can be installed with this link <a
+                                            href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">
+                                            Remote Development</a></p>
+                                        <p>
+                                            Once above extension installed, you will see below icon in your vs code
+                                            <img height="50px"  src="https://microsoft.github.io/vscode-remote-release/images/remote-dev-status-bar.png"/>
+                                        </p>
+                                        <p>Click on the icon and it will open a dialog box to select the option</p>
+                                        <p>Select <b>Connect to Host</b> option</p>
+                                        <p>This will display you all the hosts configured in your <b><i>~/.ssh/config</i></b> file </p>
+                                        <p>Select the name of your sever and vs code will connect to your server</p>
+                                        <p>Now you will have, your actual code / files from EC2 instance available in VS code for editing.</p>
+                                        <p>That's it! Thanks</p>
+                            </div>
                         </div>
-                        <div class="service-content">
-                            <h4 class="service-title"><a href="/blogs/using-vscode-in-github-browser.html">VS Code in Github using Browser</a></h4>
-                            <p>How to use vscode editor in github in browser?</p>
-                        </div>
-                        <div style="padding-top: 20px;">
-                            <p class="publishTxt">Published On: Jan 17, 2022</p>
-                        </div>
-                    </div> <!-- single service -->
-                </div>
-                <!-- Blog: 2 -->
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-service text-center mt-30">
-                        <div class="service-icon">
-                            <i class="lni lni-code-alt"></i>
-                        </div>
-                        <div class="service-content">
-                            <h4 class="service-title"><a href="/blogs/connect-ec2-instance-from-vscode.html">AWS EC2 instance files in VS Code</a></h4>
-                            <p>How to connect/open EC2 instance from visual studio code?</p>
-                        </div>
-                        <div style="padding-top: 20px;">
-                            <p class="publishTxt">Published On: Jan 28, 2022</p>
-                        </div>
-                    </div> <!-- single service -->
+                    </div>
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
@@ -226,6 +244,10 @@
 
     <!--====== Main js ======-->
     <script src="../assets/js/main.js"></script>
+
+    <!--====== Code Prettier Prism =====-->
+    <script src="../assets/js/prism.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script> -->
 
 </body>
 
