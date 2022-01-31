@@ -15,3 +15,11 @@
   text-align: left;
   list-style-type: circle;
 }
+
+.post-body > p {
+  line-height: 45px;
+}
+
+.post-body > img {
+  line-height: 45px;
+}

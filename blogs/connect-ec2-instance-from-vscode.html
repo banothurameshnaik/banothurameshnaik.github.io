@@ -118,42 +118,69 @@
                 <div class="col-lg-12">
                     <div class="post-outer">
                         <div class="post">
-                            <div class="post-body entry-content float-container" id="post-body-1136754466247242068">
+                            <div class="post-body entry-content float-container">
                                 <p>We can connect / open AWS EC2 instance files / code using Visual Studio.</p>
                                 <p>Here are the steps need to follow for this.</p>
                                 <p></p>
                                 <br />
-                                    <p>Get your private key (.pem file) for your EC2 instance</p>
-                                    <p>Make sure you set read-only permission to your private key</p>
-                                    <pre><code class="language-bash">chmod 400 my-key-pair.pem</code></pre>
-                                    <p>Copy file into ssh path</p>
-                                    <pre><code class="language-bash">cp my-key-pair.pem ~/.ssh/my-key-pair.pem</code></pre>
-                                    <p>
-                                        Add following into <b><i>~/.ssh/config</i></b> file
-                                        <pre><code class="language-bash">Host #NameOfYourServer_Here
+                                <p>Get your private key (.pem file) for your EC2 instance</p>
+                                <p>Make sure you set read-only permission to your private key</p>
+                                <pre><code class="language-bash">chmod 400 my-key-pair.pem</code></pre>
+                                <p>Copy file into ssh path</p>
+                                <pre><code class="language-bash">cp my-key-pair.pem ~/.ssh/my-key-pair.pem</code></pre>
+                                <p>
+                                    Add following into <b><i>~/.ssh/config</i></b> file
+                                <pre><code class="language-bash">Host #NameOfYourServer_Here
     HostName #IPAddreess_Here
     User ubuntu
     IdentityFile ~/.ssh/my-key-pair.pem</code></pre>
-                                        Example
-                                        <pre><code class="language-bash">Host RameshEC2Machine
-    HostName 62.121.132.93
-    User ubuntu
+                                Example
+                                <pre><code class="language-bash">Host RameshEC2Machine
+    HostName 40.76.58.212
+    User sana
     IdentityFile ~/.ssh/my-key-pair.pem</code></pre>
-                                    </p>
-                                    <p>Install the extensions required in VS Code</p>
-                                    <p>Extension name is Remote Development and can be installed with this link <a
-                                            href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">
-                                            Remote Development</a></p>
-                                        <p>
-                                            Once above extension installed, you will see below icon in your vs code
-                                            <img height="50px"  src="https://microsoft.github.io/vscode-remote-release/images/remote-dev-status-bar.png"/>
-                                        </p>
-                                        <p>Click on the icon and it will open a dialog box to select the option</p>
-                                        <p>Select <b>Connect to Host</b> option</p>
-                                        <p>This will display you all the hosts configured in your <b><i>~/.ssh/config</i></b> file </p>
-                                        <p>Select the name of your sever and vs code will connect to your server</p>
-                                        <p>Now you will have, your actual code / files from EC2 instance available in VS code for editing.</p>
-                                        <p>That's it! Thanks</p>
+                                </p>
+                                <p>Install the extensions required in VS Code</p>
+                                <p>Extension name is Remote Development and can be installed with this link <a
+                                        href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">
+                                        Remote Development</a></p>
+                                <p>
+                                    Once above extension installed, you will see below green icon in your vs code bottom
+                                    left side
+                                </p>
+                                <img height="150px"
+                                    src="https://microsoft.github.io/vscode-remote-release/images/remote-dev-status-bar.png" />
+                                <p>Click on the icon and it will open a dialog box to select the option and select
+                                    <b>Connect to Host</b> option
+                                </p>
+                                <img
+                                    src="https://code.visualstudio.com/assets/docs/remote/ssh-tutorial/remote-ssh-commands.png" />
+                                <p>This will display you all the hosts configured in your <b><i>~/.ssh/config</i></b>
+                                    file </p>
+                                <p>Select the name of your sever and vs code will connect to your server</p>
+                                <img
+                                    src="https://code.visualstudio.com/assets/docs/remote/ssh-tutorial/set-user-host.png" />
+                                <p>Now you will have, your actual code / files from EC2 instance available in VS code
+                                    for editing.</p>
+                                <img
+                                    src="https://code.visualstudio.com/assets/docs/remote/ssh-tutorial/ssh-status-bar.png" />
+                                <p>
+                                    Once you're connected to your SSH host, you can interact with files and open folders
+                                    on the remote machine. If you open the integrated terminal (⌃`), you'll see you're
+                                    working inside a bash shell while you're on Windows.
+                                </p>
+                                <img
+                                    src="https://code.visualstudio.com/assets/docs/remote/ssh-tutorial/check-uname.png" />
+                                <p>
+                                    You can use the bash shell to browse the file system on the VM. You can also browse
+                                    and open folders on the remote home directory with File > Open Folder.
+                                </p>
+                                <img
+                                    src="https://code.visualstudio.com/assets/docs/remote/ssh-tutorial/remote-open-folder.png" />
+                                <h5 style="padding-top:40px; text-align: center;">
+                                    Play with your code! Enjoy.
+                                </h5>
+                                <p>Thanks!</p>
                             </div>
                         </div>
                     </div>
