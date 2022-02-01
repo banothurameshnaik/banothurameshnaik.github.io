@@ -915,7 +915,7 @@ p {
   content: "";
   width: 100%;
   height: 20px;
-  background-color: #754ef9;
+  /* background-color: #754ef9; */
   left: 0;
   bottom: 58px;
   z-index: 11;
