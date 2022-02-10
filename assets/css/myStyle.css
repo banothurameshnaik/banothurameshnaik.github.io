@@ -5,6 +5,9 @@
 .publishTxt {
   text-align: right;
   color: blue;
+  bottom: 10px;
+  right: 30px;
+  position: absolute;
 }
 
 .pagesTitle {
@@ -20,7 +23,9 @@
   line-height: 45px;
 }
 
-.post-body h3, h4, .bye {
+.post-body h3,
+h4,
+.bye {
   padding-top: 30px;
 }
 
@@ -62,4 +67,17 @@ li {
 
 .fnt-20 {
   font-size: 20px;
+}
+
+.back-button {
+  color: black;
+  padding-top: 20px;
+  font-size: 18px;
+  font-family: monospace;
+}
+
+
+.my-blogs-div {
+  min-height: 450px;
+  max-height: 450px;
 }
