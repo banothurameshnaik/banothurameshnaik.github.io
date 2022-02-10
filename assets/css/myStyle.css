@@ -16,23 +16,29 @@
   list-style-type: circle;
 }
 
-.post-body > p {
+.post-body p {
   line-height: 45px;
 }
 
-.post-body > img {
+.post-body h3, h4, .bye {
+  padding-top: 30px;
+}
+
+.post-body img {
   line-height: 45px;
 }
 
-.project-description > p,
+.project-description p,
+h2,
 h3,
+h4,
 h5,
 h6,
 li {
   line-height: 40px;
 }
 
-.project-description > h3 {
+.project-description h3 {
   padding-top: 30px;
   line-height: 40px;
 }

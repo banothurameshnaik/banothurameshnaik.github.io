@@ -188,8 +188,8 @@ p {
 
 /*===== All Section Title Style =====*/
 .section-title .title {
-  font-weight: 700;
-  font-size: 45px;
+  /* font-weight: 700; */
+  /* font-size: 45px; */
   color: #000;
   padding-bottom: 20px;
 }

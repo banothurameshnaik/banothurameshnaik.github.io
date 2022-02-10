@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Steps for opening AWS EC2 instance files or code into Visual Studio Code">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--====== Title ======-->
+    <title>Steps for implementing CI / CD pipeline for static site deployment using AWS S3 and Github
+        Actions || Ramesh Naik Banothu - Personal Portfolio & Blogs</title>
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/png">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+    <!--====== Line Icons css ======-->
+    <!-- <link rel="stylesheet" href="assets/css/LineIcons.css"> -->
+
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
+
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="../assets/css/default.css">
+
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/myStyle.css">
+
+    <!--====== Code Pretter prism ======-->
+    <link rel="stylesheet" href="../assets/css/prism.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css" /> -->
+
+</head>
+
+<body>
+
+    <!--====== PRELOADER PART START ======-->
+
+    <div class="preloader">
+        <div class="loader_34">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--====== PRELOADER ENDS START ======-->
+
+    <!--====== HEADER PART START ======-->
+
+    <header id="home" class="header-area">
+        <div class="navigation fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                <img width="10%" src="../assets/images/logo.png" alt="Logo">
+                            </a> <!-- Logo -->
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item"><a class="page-scroll" href="/#home">Home</a></li>
+                                    <li class="nav-item"><a class="page-scroll" href="/#about">About</a></li>
+                                    <!-- <li class="nav-item"><a class="page-scroll" href="/#service">Services</a></li> -->
+                                    <li class="nav-item"><a class="page-scroll" href="/#skills">Skills</a></li>
+                                    <li class="nav-item"><a class="page-scroll myworksnav" href="/#work">My Works</a>
+                                    </li>
+                                    <li class="nav-item"><a class="page-scroll" href="/#contact">Contact</a></li>
+                                    <li class="nav-item active"><a class="page-scroll" href="/blogs">Blogs</a></li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- navigation -->
+    </header>
+
+    <!--====== HEADER PART ENDS ======-->
+
+    <!--====== ABOUT PART START ======-->
+
+    <section id="blogs" class="blogs-area pt-125 pb-130">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h2 class="title pagesTitle">Steps for implementing CI / CD pipeline for static site deployment
+                            using AWS S3 and Github
+                            Actions</h2>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="post-outer">
+                        <div class="post">
+                            <div class="post-body entry-content float-container">
+                                <div class="background">
+                                    <h3>Background</h3>
+                                    <p>
+                                        Lets say you have a static site which is either normal HTML/CSS site or a build
+                                        output
+                                        from any frameworks like react/angular web frameworks and you want to host this
+                                        as a
+                                        static site.
+                                    </p>
+                                    <p>
+                                        For hosting a static site, we can make use of <a
+                                            href="https://aws.amazon.com/s3/">
+                                            AWS S3</a> with combination of <a href="https://aws.amazon.com/route53/">AWS
+                                            Route53</a> and which is very low cost also
+                                    </p>
+                                    <p>
+                                        But everytime when we make some changes in our code, we need to push our code
+                                        into
+                                        AWS S3 to reflect our new changes.
+                                    </p>
+                                    <p>
+                                        So, to overcome this problem, we can make use <a
+                                            href="https://github.com/features/actions">Github Actions</a>
+                                        and automate our deployment or pushing our code directly into AWS S3 everytime
+                                        when
+                                        we
+                                        push some changes to master branch.
+                                    </p>
+                                </div>
+
+                                <div class="about">
+                                    <h3>What we will do?</h3>
+                                    <p>
+                                        We will automate deployment of static site content directly to S3 using Github
+                                        Actions and learn setting up CI CD pipeline for doing this.
+                                    </p>
+
+                                    <h3>Resources</h3>
+                                    <p>Following resources will be using </p>
+                                    <ol>
+                                        <li>AWS S3</li>
+                                        <li>AWS IAM</li>
+                                        <li>Github Actions</li>
+                                    </ol>
+
+                                    <p><i>Lets move to actual work without wasting much time....</i></p>
+                                </div>
+
+                                <div class="steps">
+                                    <h3>Steps</h3>
+                                    <p>
+                                        To achive our end goal of deploying static site using AWS S3, we can divide our
+                                        blog
+                                        into two sections.
+                                    </p>
+                                    <p>
+                                        In the first section we will implement pushing our code into AWS S3 bucket using
+                                        CI
+                                        / CD
+                                        pipeline of github actions.
+                                    </p>
+                                    <p>
+                                        And in the second section we will configure the s3 bucket to host our site.
+                                    </p>
+                                    <p>
+                                        Second part can be done using these well explained <a
+                                            href="https://faun.pub/how-to-host-your-static-website-with-s3-cloudfront-and-set-up-an-ssl-certificate-9ee48cd701f9">
+                                            steps</a> blog by <a href="https://medium.com/@tiboprea">Tiberiu
+                                            Oprea</a>
+                                    </p>
+
+                                    <p>So, we will deal here with first section only.</p>
+
+                                    <h3>Pushing code into AWS S3 Bucket</h3>
+
+                                    <p>
+                                        In this section we will push our code into aws S3 bucket on every push into
+                                        master
+                                        branch.
+                                    </p>
+                                </div>
+
+                                <div class="step1">
+                                    <h4>
+                                        Step1: Get AWS S3 Bucket Details
+                                    </h4>
+                                    <p>Follow below steps</p>
+                                    <ul class="pageItems">
+                                        <li>Login into you AWS console</li>
+                                        <li>Open S3 Service</li>
+                                        <li>Choose your bucket</li>
+                                        <li>Create the bucket if not exists</li>
+                                        <li>lets say we created a bucket with name <b>examplesitebucket</b></li>
+                                        <li>
+                                            Go to properites of bucket and find ARN.
+                                            <br />
+                                            <img height="250px"
+                                                src="/assets/images/blog/blog-3/2-getting-arn-of-s3-bucket.png" />
+                                        </li>
+                                        <li>Please note the bucket ARN for future steps</li>
+                                        <li>for my bucket ARN: <b>arn:aws:s3:::examplesitebucket</b></li>
+                                    </ul>
+                                </div>
+
+                                <div class="step2">
+                                    <h4>
+                                        Step2: Configure I AM User
+                                    </h4>
+                                    <p>We need a authenticated user to push our code into AWS S3. For that we can create
+                                        a
+                                        separate AWS user with our required permissions only.</p>
+                                    <p>Here we will create a policy with our required permissions and a IAM user</p>
+                                    <p>And, attach the policy to the IAM user.</p>
+                                    <p>Follow below steps for creating a policy</p>
+                                    <ul class="pageItems">
+                                        <li>Login into you AWS console</li>
+                                        <li>Open IAM Service</li>
+                                        <li>Click on polices count and create policy button</li>
+                                        <li><img src="/assets/images/blog/blog-3/10-IAM-Policy-Create-Button.png" />
+                                        </li>
+                                        <li>Go to JSON editor of policy and replace below permission in the editor as
+                                            show
+                                            in image
+                                            <br />
+                                            <p>
+                                                As you can see in below permissions, we are granting the policy with S3
+                                                read and write access on our bucket.
+                                            </p>
+                                            <p><b>Note:</b> Make sure you replace bucket details
+                                                (<b>arn:aws:s3:::examplesitebucket</b>) with your S3 bucket ARN.</p>
+                                        </li>
+                                        <li>
+                                            <pre><code class="language-bash">{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:DeleteObject",
+                "s3:GetBucketLocation",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::examplesitebucket",
+                "arn:aws:s3:::examplesitebucket/*"
+            ]
+        }
+    ]
+}
+                                                </code>
+                                            </pre>
+
+                                            <br />
+                                            <img src="/assets/images/blog/blog-3/5-Edit-Policy-As-JSON.png" />
+                                        </li>
+                                        <li>And then click <b>Next: Tags</b> button at bottom right</li>
+                                        <li>Give a name to the policy in the next step and make a note of it</li>
+                                        <li>For me policy name was <b>tes-push-s3-policy</b></li>
+                                    </ul>
+
+                                    <p>Now we will create a IAM User</p>
+
+                                    <p>Follow below steps for creating a IAM user</p>
+                                    <ul class="pageItems">
+                                        <li>Login into you AWS console</li>
+                                        <li>Open IAM Service</li>
+                                        <li>Click on users count and create user button</li>
+                                        <li>Give the name to user and mark the checkbox <b>Access Key - Programettic</b>
+                                            Access as shown in below image
+                                            <br />
+                                            <img src="/assets/images/blog/blog-3/3-Adding-IAM-User.png" />
+                                        </li>
+                                        <li>And then click on next step</li>
+                                        <li>In the permissions step, we need to attach permissions policy which we
+                                            created
+                                            in above step.</li>
+                                        <li>Follow steps given in below image
+                                            <img
+                                                src="/assets/images/blog/blog-3/6-IAM-User-Attaching-Permissions-Policy.png" />
+                                        </li>
+                                        <li>Click on next step and review the user, make sure policy we created
+                                            is
+                                            attached to user
+                                            <br />
+                                            <img src="/assets//images/blog/blog-3/7-IAM-User-Review.png" />
+                                        </li>
+                                        <li>
+                                            Click on next step and create the user.
+                                        </li>
+                                        <li>
+                                            Note down the credentials displayed here.
+                                            These credentials will displayed only once here and can't be viewed again.
+                                            So, Please make sure to download these credentials and keep it as secret.
+                                            <br />
+                                            <img src="/assets//images/blog/blog-3/8-IAM-User-Credentials.png" />
+                                        </li>
+                                        <li>We need these credentials in the next steps...</li>
+                                    </ul>
+
+                                    <p>
+                                        Now we will make configurations in our github repo
+                                    </p>
+                                </div>
+
+                                <div class="step3">
+                                    <h4>
+                                        Step3: Configure Github Actions
+                                    </h4>
+                                    <p>Open your repo code and follow below steps</p>
+                                    <h5>Code Setup</h5>
+                                    <ul class="pageItems">
+                                        <li>
+                                            Create a file master.yml with following content and save the file in
+                                            <b>.github/workflows</b> folder. (<i>Create the folder if not exists :-</i>)
+                                            <pre><code class="language-bash">
+name: Deploy into Server
+on:
+    push:
+    branches:
+        - master
+
+jobs:
+    push-into-s3:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+        uses: actions/checkout@master
+
+    # Upload to S3
+    - name: Upload to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+        args: --exclude '.git*/*' --delete --follow-symlinks
+        env:
+        SOURCE_DIR: './'
+        AWS_REGION: 'ap-south-1'
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                                            </code>
+                                            </pre>
+                                        </li>
+                                    </ul>
+                                    <p>As you can see above workflow code, we are running a job on every push into
+                                        master branch.</p>
+                                    <p><b>Note:</b> You can modify this workflow as per your branch / commits etc and
+                                        learn more <a href="https://github.com/features/actions"> here</a></p>
+                                    <h5>Settings Setup</h5>
+                                    <p>
+                                        As we can see in above master.yml code, we need three AWS evnironment
+                                        variables
+                                    </p>
+                                    <p>
+                                        Since we can't hardcode them into the codebase, we can make use of Github
+                                        Secrets to store them.
+                                    </p>
+                                    <ul class="pageItems">
+                                        <li>Login to your github and open the repo</li>
+                                        <li>Go to repo settings -> Secrets -> Actions</li>
+                                        <li>
+                                            Add three secrets
+                                            <table class="table .table-borderless">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Value</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>AWS_S3_BUCKET</td>
+                                                    <td>Your S3 bucket name <br /> Ex: examplesitebucket</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AWS_ACCESS_KEY_ID</td>
+                                                    <td>Access ID Of AWS IAM User</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AWS_SECRET_ACCESS_KEY</td>
+                                                    <td>Access Key Of AWS IAM User</td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                        <li>
+                                            <img src="/assets/images/blog/blog-3/9-Github-Actions-Secrets.png" />
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="testing">
+                                    <h3>Now let's test</h3>
+                                    <p>If you followed the above steps properly, we are done with setting up ci/cd
+                                        pipeline.</p>
+                                    <p>Now its time to test it</p>
+                                    <p>You can commit the changes in your Github repo and push to master branch</p>
+                                    <p>On push to master branch our workflow Github action will trigger and which will
+                                        deploy our code into S3</p>
+                                </div>
+
+                                <div class="bye">
+                                    <p><i>Hope you like the blog.</i></p>
+                                    <p><i>Enjoy!!!</i></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== ABOUT PART ENDS ======-->
+
+    <!--====== FOOTER PART START ======-->
+
+    <footer id="footer" class="footer-area">
+        <div class="footer-widget pt-130 pb-130">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="footer-content text-center">
+                            <a href="/">
+                                <img width="10%" src="../assets/images/logo-2.png" alt="Logo">
+                            </a>
+                            <p class="mt-">Banothu Ramesh Naik</p>
+                            <ul>
+                                <li><a target="_blank" href="https://github.com/banothurameshnaik"><i
+                                            class="lni lni-github-original"></i></a></li>
+                                <li><a target="_blank"
+                                        href="https://www.linkedin.com/in/ramesh-naik-banothu-841b9b114/"><i
+                                            class="lni lni-linkedin-original"></i></a></li>
+                            </ul>
+                        </div> <!-- footer content -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer widget -->
+        <div class="footer-copyright pb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text text-center pt-20">
+                            <p>No copyrights</p>
+                        </div> <!-- copyright text -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer widget -->
+    </footer>
+
+    <!--====== FOOTER PART ENDS ======-->
+
+    <!--====== BACK TOP TOP PART START ======-->
+
+    <a href="#" class="back-to-top"><i class="lni lni-chevron-up"></i></a>
+
+    <!--====== BACK TOP TOP PART ENDS ======-->
+
+
+
+
+
+
+
+    <!--====== jquery js ======-->
+    <script src="../assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+
+    <!--====== Magnific Popup js ======-->
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+
+    <!--====== Parallax js ======-->
+    <script src="../assets/js/parallax.min.js"></script>
+
+    <!--====== Counter Up js ======-->
+    <script src="../assets/js/waypoints.min.js"></script>
+    <script src="../assets/js/jquery.counterup.min.js"></script>
+
+
+    <!--====== Appear js ======-->
+    <script src="../assets/js/jquery.appear.min.js"></script>
+
+    <!--====== Scrolling js ======-->
+    <script src="../assets/js/scrolling-nav.js"></script>
+    <script src="../assets/js/jquery.easing.min.js"></script>
+
+
+    <!--====== Main js ======-->
+    <script src="../assets/js/main.js"></script>
+
+    <!--====== Code Prettier Prism =====-->
+    <script src="../assets/js/prism.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script> -->
+
+</body>
+
+</html>
