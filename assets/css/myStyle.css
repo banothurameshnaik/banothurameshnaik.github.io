@@ -17,6 +17,7 @@
 .pageItems {
   text-align: left;
   list-style-type: circle;
+  padding-left: 15px;
 }
 
 .post-body p {

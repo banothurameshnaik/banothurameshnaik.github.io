@@ -572,6 +572,7 @@ p {
 .navigation .navbar .navbar-brand {
   padding-top: 0;
   padding-bottom: 5px;
+  width: 50%;
 }
 .navigation .navbar .navbar-toggler {
   padding: 2px 6px;
@@ -927,7 +928,7 @@ p {
 
 .header-social {
   position: absolute;
-  bottom: 95px;
+  bottom: 75px;
   left: 15px;
   width: 100%;
 }
